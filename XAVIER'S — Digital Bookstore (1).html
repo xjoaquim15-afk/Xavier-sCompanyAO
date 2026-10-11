@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-AO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>XAVIER'S — Digital Bookstore</title>
+<meta name="description" content="Conhecimento que move. Ideias que transformam. E-books e guias digitais em PDF, com preços em kwanzas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="XAVIER'S — Digital Bookstore">
+<meta property="og:description" content="Conhecimento que move. Ideias que transformam. E-books e guias digitais em PDF.">
+<meta property="og:locale" content="pt_AO">
+<meta name="theme-color" content="#04060b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json" id="ld">{}</script>
+<style id="xv-css">
+:root{
+  --black:#04060b;--navy-900:#08101f;--navy-800:#0d1a35;--navy-700:#15264d;--navy-600:#1f3566;
+  --gold:#c9a24b;--gold-hi:#e8cc82;--text:#eaeef7;--muted:#9ba7c2;--line:rgba(201,162,75,.2);
+  --danger:#ff8b82;--ok:#7bdca6;
+  --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Georgia,serif;
+  --sans:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;font-family:var(--sans);color:var(--text);line-height:1.6;background:var(--black);
+  background-image:radial-gradient(1100px 520px at 75% -80px,rgba(31,53,102,.55),transparent 70%);
+  background-repeat:no-repeat;min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0}
+p{margin:0 0 1em}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.muted{color:var(--muted)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* buttons */
+.btn{font:600 .95rem/1 var(--sans);display:inline-flex;align-items:center;justify-content:center;gap:.5em;padding:.95em 1.5em;border-radius:var(--r,6px);border:1px solid var(--gold);background:var(--gold);color:#1a1405;cursor:pointer;transition:background .2s,transform .15s}
+.btn:hover{background:var(--gold-hi)}
+.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--gold-hi)}
+.btn.ghost:hover{background:rgba(201,162,75,.12)}
+.btn.sm{padding:.65em 1em;font-size:.85rem}
+.btn.danger{background:transparent;border-color:rgba(255,139,130,.5);color:var(--danger)}
+.btn.danger:hover{background:rgba(255,139,130,.1)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+.link{color:var(--gold-hi);text-decoration:underline;text-underline-offset:3px;background:none;border:0;padding:0;font:inherit;cursor:pointer}
+
+/* demo bar + header */
+.demobar{background:var(--navy-700);color:var(--gold-hi);font-size:.85rem;text-align:center;padding:.5em 16px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:rgba(4,6,11,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;gap:20px;padding-top:12px;padding-bottom:12px;flex-wrap:wrap}
+.logo{display:flex;flex-direction:column;line-height:1}
+.logo b{font:700 1.45rem/1 var(--serif);letter-spacing:.14em;color:var(--gold-hi)}
+.logo small{font-size:.68rem;color:var(--muted);letter-spacing:.12em;margin-top:5px}
+.nav{display:flex;gap:22px;margin-left:12px;font-size:.92rem;font-weight:500}
+.nav a{color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
+.nav a:hover,.nav a.on{color:var(--text);border-color:var(--gold)}
+.top-r{margin-left:auto;display:flex;align-items:center;gap:12px}
+.hsearch{display:flex;align-items:center;background:var(--navy-900);border:1px solid var(--line);border-radius:999px;padding:0 6px 0 16px}
+.hsearch input{background:none;border:0;color:var(--text);font:inherit;font-size:.9rem;padding:.65em 0;width:190px;outline:none}
+.hsearch:focus-within{border-color:var(--gold)}
+.icon-btn{background:none;border:0;color:var(--gold-hi);cursor:pointer;padding:8px;border-radius:50%;display:inline-flex;position:relative}
+.icon-btn:hover{background:rgba(201,162,75,.12)}
+.icon-btn svg{width:22px;height:22px}
+.badge{position:absolute;top:0;right:-2px;background:var(--gold);color:#1a1405;font:700 .68rem/1 var(--sans);min-width:18px;height:18px;border-radius:9px;display:grid;place-items:center;padding:0 4px}
+.badge:empty{display:none}
+@media(max-width:860px){
+  .top-in{gap:10px}
+  .nav{order:3;width:100%;margin:0;overflow-x:auto;gap:20px;padding-bottom:2px}
+  .hsearch input{width:110px}
+}
+
+/* covers */
+.cover{position:relative;aspect-ratio:2/3;container-type:inline-size;border-radius:3px 8px 8px 3px;overflow:hidden;box-shadow:0 22px 40px -14px rgba(0,0,0,.85),0 0 0 1px rgba(232,204,130,.16);background:var(--navy-800)}
+.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cv{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:9cqw 8cqw 9cqw 13cqw;color:var(--gold-hi)}
+.cv::before{content:"";position:absolute;inset:0 auto 0 0;width:5cqw;background:linear-gradient(90deg,rgba(0,0,0,.6),rgba(255,255,255,.07))}
+.cv>*{position:relative}
+.cv-brand{font:700 5cqw/1 var(--sans);letter-spacing:.22em;opacity:.9}
+.cv-title{font:600 11.5cqw/1.1 var(--serif);text-wrap:balance}
+.cv-sub{font:500 4.4cqw/1.35 var(--sans);color:var(--muted)}
+.cv0{background:radial-gradient(circle at 78% 20%,rgba(201,162,75,.38) 0 13%,transparent 13.5%),radial-gradient(circle at 78% 20%,transparent 0 21%,rgba(201,162,75,.2) 21.5% 22.5%,transparent 23%),linear-gradient(160deg,var(--navy-700),var(--black))}
+.cv1{background:repeating-linear-gradient(135deg,rgba(201,162,75,.13) 0 2px,transparent 2px 14px),linear-gradient(200deg,var(--navy-600),var(--black))}
+.cv2{background:linear-gradient(rgba(201,162,75,.13) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(90deg,rgba(201,162,75,.13) 1px,transparent 1px) 0 0/16px 16px,linear-gradient(180deg,var(--navy-800),var(--black))}
+.cv3{background:repeating-radial-gradient(circle at 100% 100%,rgba(201,162,75,.2) 0 2px,transparent 2px 16px),linear-gradient(160deg,var(--navy-700),var(--navy-900))}
+.cv4{background:repeating-linear-gradient(0deg,rgba(201,162,75,.15) 0 6px,transparent 6px 22px),linear-gradient(180deg,var(--navy-600),var(--black))}
+.cv5{background:radial-gradient(rgba(201,162,75,.32) 1.5px,transparent 2px) 0 0/14px 14px,linear-gradient(150deg,var(--navy-800),var(--black))}
+.tagx{position:absolute;top:10px;right:10px;z-index:2;background:rgba(4,6,11,.8);border:1px solid var(--line);color:var(--gold-hi);font-size:.7rem;font-weight:600;padding:3px 8px;border-radius:999px}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero-g{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,5.6vw,4.5rem);letter-spacing:-.01em;font-weight:600}
+.hero h1 span{display:block}
+.hero h1 span+span{color:var(--gold-hi)}
+.hero p.lead{font-size:1.12rem;color:var(--muted);max-width:52ch;margin:22px 0 30px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.fan{position:relative;height:430px}
+.fan .cover{position:absolute;width:min(210px,44%);animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.fan .cover:nth-child(1){left:2%;top:60px;transform:rotate(-9deg)}
+.fan .cover:nth-child(2){left:50%;margin-left:-105px;top:4px;z-index:2;animation-delay:.12s}
+.fan .cover:nth-child(3){right:2%;top:70px;transform:rotate(8deg);animation-delay:.24s}
+@keyframes rise{from{opacity:0;translate:0 36px}to{opacity:1;translate:0 0}}
+@media(max-width:860px){.hero{padding-top:36px}.hero-g{grid-template-columns:1fr}.fan{height:330px}.fan .cover{width:38%}.fan .cover:nth-child(2){margin-left:-19%}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* sections */
+section.sec{padding:56px 0}
+.sec-h{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:28px;flex-wrap:wrap}
+.sec-h h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+.sec-h p{margin:6px 0 0;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 22px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr);gap:24px 14px}}
+@media(max-width:380px){.grid{grid-template-columns:1fr}}
+.pcard{display:flex;flex-direction:column;gap:14px}
+.pcard-cover{position:relative;display:block;transition:transform .25s}
+.pcard-cover:hover{transform:translateY(-5px)}
+.pcard-cat{font-size:.8rem;color:var(--gold)}
+.pcard h3{font-size:1.1rem;margin:2px 0 6px}
+.pcard h3 a:hover{color:var(--gold-hi)}
+.pcard-desc{font-size:.86rem;color:var(--muted);margin:0 0 12px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pcard-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:auto}
+.price{font:600 1.1rem var(--serif);color:var(--gold-hi);white-space:nowrap}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line)}
+.cats a{padding:22px 8px 22px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.cats a:hover b{color:var(--gold-hi)}
+.cats b{font:600 1.15rem var(--serif)}
+.cats small{color:var(--muted)}
+@media(max-width:860px){.cats{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.cats{grid-template-columns:1fr}}
+.band{background:linear-gradient(180deg,var(--navy-900),var(--black));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.benefit svg{width:28px;height:28px;color:var(--gold);margin-bottom:12px}
+.benefit h3{font-size:1.05rem;margin-bottom:6px}
+.benefit p{font-size:.9rem;color:var(--muted);margin:0}
+@media(max-width:860px){.benefits{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.benefits{grid-template-columns:1fr}}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.quotes blockquote{margin:0;padding:0 0 0 18px;border-left:2px solid var(--gold);font-family:var(--serif);font-size:1.1rem}
+.quotes cite{display:block;margin-top:10px;font:500 .85rem var(--sans);color:var(--muted);font-style:normal}
+.faq{max-width:760px}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font:600 1.05rem var(--serif);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--gold);font-size:1.4rem;line-height:1}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin:12px 0 0;color:var(--muted)}
+
+/* catalog */
+.page{padding:44px 0 72px}
+.page h1{font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:8px}
+.tools{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 8px;align-items:center}
+.tools input,.tools select,.in{background:var(--navy-900);border:1px solid var(--line);color:var(--text);font:inherit;padding:.8em 1em;border-radius:6px;min-width:0}
+.tools input{flex:1;min-width:200px}
+.in{width:100%}
+.in:focus,.tools input:focus,.tools select:focus{outline:none;border-color:var(--gold)}
+textarea.in{min-height:110px;resize:vertical}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 30px}
+.chip{border:1px solid var(--line);background:none;color:var(--muted);padding:.5em 1em;border-radius:999px;cursor:pointer;font:500 .85rem var(--sans)}
+.chip:hover{color:var(--text);border-color:var(--gold)}
+.chip.on{background:var(--gold);border-color:var(--gold);color:#1a1405}
+.empty{padding:60px 0;text-align:center;color:var(--muted)}
+
+/* product */
+.crumbs{font-size:.85rem;color:var(--muted);margin-bottom:26px}
+.crumbs a:hover{color:var(--gold-hi)}
+.pd{display:grid;grid-template-columns:340px 1fr;gap:52px;align-items:start}
+.pd .cover{width:100%}
+.pd h1{font-size:clamp(1.9rem,4vw,3rem);margin:6px 0 10px}
+.pd .price{font-size:1.9rem;display:block;margin:18px 0}
+.pd-act{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0;border-top:1px solid var(--line);margin:24px 0}
+.facts div{padding:14px 8px 14px 0;border-bottom:1px solid var(--line)}
+.facts small{display:block;color:var(--muted);font-size:.78rem}
+.share{display:flex;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:.9rem}
+@media(max-width:820px){.pd{grid-template-columns:1fr;gap:30px}.pd .cover{max-width:260px}}
+
+/* drawer */
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .25s;z-index:60}
+.ov.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--navy-900);border-left:1px solid var(--line);z-index:61;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer.open{transform:none}
+.dr-h{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--line)}
+.dr-h h2{font-size:1.3rem}
+.dr-b{flex:1;overflow:auto;padding:8px 20px}
+.dr-f{padding:18px 20px;border-top:1px solid var(--line)}
+.line{display:grid;grid-template-columns:62px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.line h4{font:600 .98rem var(--serif);margin-bottom:4px}
+.qty{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:6px;margin-top:8px}
+.qty button{background:none;border:0;color:var(--gold-hi);width:32px;height:32px;cursor:pointer;font-size:1.1rem}
+.qty span{min-width:26px;text-align:center;font-size:.9rem}
+.tot{display:flex;justify-content:space-between;margin-bottom:6px;color:var(--muted)}
+.tot.big{color:var(--text);font:600 1.3rem var(--serif);margin:10px 0 16px}
+
+/* checkout & forms */
+.two{display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:start}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+.panel{background:var(--navy-900);border:1px solid var(--line);border-radius:10px;padding:24px}
+.fld{margin-bottom:16px}
+.fld label{display:block;font-size:.85rem;font-weight:600;margin-bottom:6px}
+.fld small{color:var(--muted);display:block;margin-top:4px}
+.fld .err{color:var(--danger)}
+.pay{display:grid;gap:10px}
+.pay label{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:14px;cursor:pointer;font-weight:500}
+.pay input{accent-color:var(--gold);margin-top:4px}
+.pay label:has(input:checked){border-color:var(--gold);background:rgba(201,162,75,.07)}
+.pay small{display:block;color:var(--muted);font-weight:400}
+.notice{border:1px solid var(--line);border-left:3px solid var(--gold);background:rgba(201,162,75,.06);padding:14px 16px;border-radius:6px;font-size:.9rem;margin:0 0 20px}
+.notice.warn{border-left-color:var(--danger)}
+.status{display:inline-block;font:600 .8rem var(--sans);padding:4px 12px;border-radius:999px;border:1px solid var(--line)}
+.st-pago,.st-entregue{color:var(--ok);border-color:rgba(123,220,166,.4)}
+.st-aguarda,.st-comprovativo{color:var(--gold-hi)}
+.st-cancelado{color:var(--danger);border-color:rgba(255,139,130,.4)}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;margin:14px 0;font-size:.92rem}
+.kv dt{color:var(--muted)}.kv dd{margin:0;word-break:break-word}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.legal{max-width:760px}
+.legal p{color:#cfd6e8;white-space:pre-line}
+
+/* admin */
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);margin:22px 0 28px;overflow-x:auto}
+.tabs button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);padding:.8em 1em;font:600 .92rem var(--sans);cursor:pointer;white-space:nowrap}
+.tabs button.on{color:var(--gold-hi);border-color:var(--gold)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;margin-bottom:30px}
+.stat{border:1px solid var(--line);border-radius:10px;padding:18px;background:var(--navy-900)}
+.stat small{color:var(--muted)}
+.stat b{display:block;font:600 1.6rem var(--serif);color:var(--gold-hi);margin-top:4px}
+.arow{display:grid;grid-template-columns:44px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.arow .cover{box-shadow:none}
+.arow .acts{margin:0}
+.ord{border:1px solid var(--line);border-radius:10px;padding:18px;margin-bottom:14px;background:var(--navy-900)}
+.ord-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.form-g{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+@media(max-width:640px){.form-g{grid-template-columns:1fr}}
+.form-g .full{grid-column:1/-1}
+.set-h{font-size:1.25rem;margin:34px 0 14px;padding-top:24px;border-top:1px solid var(--line)}
+.set-h:first-child{margin-top:0;border:0;padding:0}
+.chk{display:flex;gap:10px;align-items:center}
+.chk input{accent-color:var(--gold)}
+
+/* footer */
+footer.foot{border-top:1px solid var(--line);background:var(--black);padding:48px 0 30px;margin-top:20px}
+.foot-g{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px}
+.foot h4{font:700 .95rem var(--sans);margin-bottom:12px;color:var(--gold-hi)}
+.foot a,.foot li{color:var(--muted);font-size:.9rem}
+.foot a:hover{color:var(--text)}
+.foot ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.foot .copy{margin-top:36px;padding-top:20px;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:860px){.foot-g{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.foot-g{grid-template-columns:1fr}}
+.fan.one{display:grid;place-items:center}
+.fan.one .cover:nth-child(1){position:relative;left:auto;top:auto;right:auto;margin:0;width:min(250px,70%);transform:rotate(-4deg)}
+.modal{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-box{background:var(--navy-900);border:1px solid var(--line);border-radius:12px;width:min(720px,100%);max-height:calc(100vh - 40px);display:flex;flex-direction:column}
+.modal-b{overflow:auto;padding:22px 24px}
+.modal-b h3{font-size:1.35rem;margin:26px 0 10px}.modal-b h3:first-child{margin-top:0}
+.modal-b p,.modal-b li{color:#cfd6e8;max-width:62ch}
+.modal-b ul{padding-left:20px}
+.toc{columns:2;column-gap:32px;padding-left:20px;margin:0 0 24px;color:var(--muted)}
+.toc li{margin-bottom:6px;break-inside:avoid}
+@media(max-width:640px){.toc{columns:1}}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,20px);background:var(--gold);color:#1a1405;font-weight:600;font-size:.9rem;padding:.8em 1.3em;border-radius:8px;opacity:0;pointer-events:none;transition:.25s;z-index:80;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+</style>
+</head>
+<body>
+<div id="demobar"></div>
+<header class="top">
+  <div class="wrap top-in">
+    <a href="#/" class="logo" aria-label="XAVIER'S — página inicial"><b>XAVIER'S</b><small>Digital Bookstore</small></a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#/" data-r="home">Início</a>
+      <a href="#/catalogo" data-r="catalogo">Catálogo</a>
+      <a href="#/catalogo?cat=negocios" data-r="x1">Categorias</a>
+      <a href="#/pedidos" data-r="pedidos">Os meus pedidos</a>
+      <a href="#/faq" data-r="faq">Perguntas frequentes</a>
+    </nav>
+    <div class="top-r">
+      <form class="hsearch" role="search" data-form="hsearch">
+        <label class="sr" for="hq">Pesquisar e-books</label>
+        <input id="hq" type="search" placeholder="Pesquisar e-books" autocomplete="off">
+        <button class="icon-btn" aria-label="Pesquisar" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+      </form>
+      <button class="icon-btn" data-act="cart" aria-label="Abrir carrinho"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2.5l2.2 11h10.1l2-8H6.5"/><circle cx="9" cy="19.5" r="1.4"/><circle cx="17" cy="19.5" r="1.4"/></svg><span class="badge" id="cartN"></span></button>
+    </div>
+  </div>
+</header>
+
+<main id="app" tabindex="-1"></main>
+<noscript><p style="padding:40px;text-align:center">Este site precisa de JavaScript activo para funcionar.</p></noscript>
+
+<footer class="foot" id="foot"></footer>
+
+<div class="ov" id="ov" data-act="closecart"></div>
+<aside class="drawer" id="drawer" aria-label="Carrinho de compras" aria-hidden="true">
+  <div class="dr-h"><h2>O seu carrinho</h2><button class="icon-btn" data-act="closecart" aria-label="Fechar carrinho"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="dr-b" id="drb"></div>
+  <div class="dr-f" id="drf"></div>
+</aside>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mt" aria-hidden="true"><div class="modal-box"><div class="dr-h"><h2 id="mt"></h2><button class="icon-btn" data-act="closemodal" aria-label="Fechar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="modal-b" id="mb"></div><div class="dr-f" id="mf"></div></div></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script type="application/json" id="xv-data">{"products": [{"id": "como-comecar-pequeno-negocio-angola", "title": "Como Começar um Pequeno Negócio em Angola", "author": "XAVIER'S", "cat": "negocios", "price": 4500, "pages": 9, "short": "Um guia simples e prático para transformar uma ideia numa fonte de rendimento: da ideia aos primeiros clientes, passo a passo.", "long": "Guia prático, edição 2026, escrito em linguagem simples e com exemplos adaptados à realidade angolana. Aprende a escolher uma ideia, descobrir se existem clientes, calcular o dinheiro necessário para começar, definir preços, organizar as finanças, divulgar o negócio e conhecer os cuidados legais e fiscais. Inclui um plano de acção para os primeiros 30 dias e um mini-plano de negócio para preencher. Material educativo: não substitui aconselhamento contabilístico, jurídico ou fiscal.", "featured": true, "demo": false, "cover": "", "toc": ["Começa pelo problema, não pelo dinheiro", "Descobre se existem clientes", "Faz um plano de negócio de uma página", "Calcula o dinheiro necessário para começar", "Aprende a definir o preço", "Organiza o dinheiro do negócio", "Divulga o negócio e conquista os primeiros clientes", "Atende bem e transforma clientes em clientes habituais", "Formalização e obrigações em Angola", "Erros que deves evitar", "Plano de acção para os primeiros 30 dias", "Ferramenta prática: o teu mini-plano de negócio"], "sample": "# Introdução\n\nComeçar um pequeno negócio pode parecer difícil, sobretudo quando o dinheiro é limitado ou quando ainda não tens experiência. A boa notícia é que não precisas de começar com uma grande empresa, uma loja luxuosa ou muitos funcionários. Podes começar pequeno, testar a tua ideia, aprender com os clientes e crescer de forma organizada.\n\nEste e-book foi escrito em linguagem simples e com exemplos adaptados à realidade angolana. Vais aprender a escolher uma ideia, conhecer os clientes, calcular custos, definir preços, divulgar o negócio, controlar o dinheiro e perceber alguns cuidados legais e fiscais.\n\n# 1. Começa pelo problema, não pelo dinheiro\n\nUm negócio existe para resolver um problema ou satisfazer uma necessidade. Antes de perguntares «Que negócio dá dinheiro?», pergunta: «Que problema consigo resolver bem e por que razão alguém pagaria por isso?»\n\nExemplos de ideias que podem ser testadas em Angola:\n\n• Venda de refeições, bolos, sumos ou lanches por encomenda.\n• Revenda de roupa, calçado, cosméticos ou acessórios, começando com poucas unidades.\n• Lavagem de carros, limpeza de casas ou pequenos serviços de higienização.\n• Explicações escolares, aulas de informática ou formação em competências profissionais.\n• Design simples, gestão de páginas, fotografia de produtos ou apoio digital a pequenos negócios.\n\nNão escolhas uma ideia apenas porque está na moda. Escolhe algo de que conheças os clientes, consigas executar com qualidade e possas testar sem assumir uma dívida pesada.\n\n# Quer continuar a ler?\n\nOs restantes capítulos, o plano de acção para os primeiros 30 dias e o mini-plano de negócio estão no e-book completo."}], "settings": {}}</script>
+<script id="xv-main">
+"use strict";
+const SELF=document.currentScript.textContent;
+/* ========= utilidades ========= */
+const $=(s,r=document)=>r.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const kz=n=>String(Math.round(n||0)).replace(/\B(?=(\d{3})+(?!\d))/g,"\u00A0")+"\u00A0Kz";
+const store={mem:{},
+  get(k,d){try{const v=localStorage.getItem(k);if(v!=null)return JSON.parse(v)}catch(e){}return k in this.mem?this.mem[k]:d},
+  set(k,v){this.mem[k]=v;try{localStorage.setItem(k,JSON.stringify(v))}catch(e){toast("Não foi possível guardar os dados neste navegador.")}}};
+let tt;function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("show");clearTimeout(tt);tt=setTimeout(()=>t.classList.remove("show"),2600)}
+const slug=s=>s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60)||"ebook";
+const digits=s=>String(s||"").replace(/\D/g,"");
+const phoneAO=s=>{let d=digits(s);if(d.length===9)d="244"+d;return d};
+const armed={};function twice(k){if(armed[k]){clearTimeout(armed[k]);delete armed[k];return true}armed[k]=setTimeout(()=>delete armed[k],4000);toast("Clique outra vez para confirmar.");return false}
+const setPath=(o,p,v)=>{const a=p.split(".");let c=o;a.slice(0,-1).forEach(k=>c=c[k]=c[k]||{});c[a.at(-1)]=v};
+const getPath=(o,p)=>p.split(".").reduce((c,k)=>c==null?"":c[k],o);
+
+/* ========= dados ========= */
+const CATS=[
+  {id:"negocios",name:"Negócios e empreendedorismo"},
+  {id:"pessoal",name:"Desenvolvimento pessoal"},
+  {id:"direito",name:"Direito e Compliance"},
+  {id:"gestao",name:"Gestão e administração"},
+  {id:"carreira",name:"Carreira e empregabilidade"},
+  {id:"financas",name:"Finanças pessoais"}];
+const catName=id=>(CATS.find(c=>c.id===id)||{name:"Geral"}).name;
+const LEGAL_TXT={
+  termos:"TERMOS E CONDIÇÕES (texto-modelo)\n\nAo comprar na XAVIER'S, o cliente aceita estes termos. Os e-books são produtos digitais, para uso pessoal, e não podem ser revendidos, copiados ou partilhados publicamente. Os preços são apresentados em kwanzas (Kz). A encomenda só é considerada paga depois de a XAVIER'S confirmar a recepção do pagamento.",
+  privacidade:"POLÍTICA DE PRIVACIDADE (texto-modelo)\n\nRecolhemos apenas o nome, o e-mail e o telefone necessários para processar a encomenda e entregar o e-book. Não vendemos dados a terceiros. O cliente pode pedir a correcção ou a eliminação dos seus dados através dos contactos da loja.",
+  reembolso:"POLÍTICA DE REEMBOLSO E CANCELAMENTO (texto-modelo)\n\nDefina aqui em que condições aceita cancelamentos e reembolsos, o prazo para pedir e a forma de devolução do valor. Por tratar-se de produto digital de entrega imediata, indique claramente o que se aplica após o envio do link de download.",
+  digital:"CONDIÇÕES DE VENDA DE PRODUTOS DIGITAIS (texto-modelo)\n\nApós a confirmação do pagamento, o cliente recebe o link de download por WhatsApp ou e-mail. O ficheiro é entregue em formato PDF. O cliente deve guardar uma cópia do ficheiro. Indique aqui o prazo de validade do link, se aplicável.",
+  contactos:"CONTACTOS E IDENTIFICAÇÃO COMERCIAL\n\nPreencha em Administração › Definições a denominação social, o NIF e a morada da empresa."};
+const DEFAULT_SETTINGS={
+  brand:"XAVIER'S",tagline:"Conhecimento que move. Ideias que transformam.",
+  heroSub:"Guias digitais em PDF para empreender, crescer na carreira e gerir melhor o seu dinheiro. Receba o link de download assim que o pagamento for confirmado.",
+  whatsapp:"",email:"",phone:"",address:"Luanda, Angola",nif:"",
+  bank:{name:"",iban:"",holder:""},multicaixa:{number:"",name:""},
+  social:{instagram:"",facebook:"",tiktok:""},testimonials:"",legal:LEGAL_TXT};
+const FAQ=[
+  ["Como recebo o e-book?","Depois de fazer a encomenda, efectue o pagamento e envie o comprovativo. Quando a XAVIER'S confirmar o pagamento, recebe o ficheiro PDF (ou o link de download) por WhatsApp ou e-mail."],
+  ["Que métodos de pagamento aceitam?","Transferência bancária e Multicaixa Express, sempre em kwanzas. Os dados de pagamento aparecem depois de confirmar a encomenda."],
+  ["Em que formato são os e-books?","PDF, que pode ler no telemóvel, no tablet ou no computador."],
+  ["Quanto tempo demora a confirmação?","Depende da verificação do pagamento. Se não receber resposta, contacte-nos pelo WhatsApp indicado no rodapé."],
+  ["Posso pedir reembolso?","Consulte a política de reembolso e cancelamento no rodapé da loja."]];
+
+const merge=(b,o)=>{const r=JSON.parse(JSON.stringify(b));for(const k in (o||{})){r[k]=(o[k]&&typeof o[k]==="object"&&!Array.isArray(o[k])&&typeof b[k]==="object")?merge(b[k],o[k]):o[k]}return r};
+const BOOT=(()=>{try{return JSON.parse($("#xv-data").textContent)}catch(e){return {}}})();
+const links=store.get("xv_links",{});
+let pending=store.get("xv_draft",null);
+let products=(pending&&pending.products)||BOOT.products||[];
+let settings=merge(DEFAULT_SETTINGS,(pending&&pending.settings)||BOOT.settings||{});
+const lk=p=>p?(links[p.id]||""):"";
+let cart=store.get("xv_cart",[]);
+let orders=store.get("xv_orders",[]);
+const saveDraft=()=>{pending={products,settings};store.set("xv_draft",pending)},saveP=saveDraft,saveS=saveDraft, saveC=()=>store.set("xv_cart",cart), saveO=()=>store.set("xv_orders",orders);
+const byId=id=>products.find(p=>p.id===id);
+const ST={aguarda:"Aguarda pagamento",comprovativo:"Comprovativo enviado",pago:"Pago",entregue:"Entregue",cancelado:"Cancelado"};
+const paidOrders=()=>orders.filter(o=>o.status==="pago"||o.status==="entregue");
+const enoughData=()=>paidOrders().length>=5;
+const salesOf=id=>paidOrders().reduce((s,o)=>s+o.items.filter(i=>i.id===id).reduce((a,i)=>a+i.qty,0),0);
+
+/* ========= componentes ========= */
+function cover(p){
+  if(p.cover)return `<div class="cover"><img src="${esc(p.cover)}" alt="Capa de ${esc(p.title)}"></div>`;
+  const k=Math.max(0,CATS.findIndex(c=>c.id===p.cat))%6;
+  return `<div class="cover" role="img" aria-label="Capa de ${esc(p.title)}"><div class="cv cv${k}"><span class="cv-brand">XAVIER'S</span><span class="cv-title">${esc(p.title)}</span><span class="cv-sub">${esc(catName(p.cat))}</span></div></div>`;
+}
+function card(p){
+  return `<article class="pcard"><a class="pcard-cover" href="#/livro/${p.id}" aria-label="Ver ${esc(p.title)}">${cover(p)}${p.demo?'<span class="tagx">Exemplo</span>':""}</a>
+  <div><a class="pcard-cat" href="#/catalogo?cat=${p.cat}">${esc(catName(p.cat))}</a><h3><a href="#/livro/${p.id}">${esc(p.title)}</a></h3>
+  <p class="pcard-desc">${esc(p.short)}</p>
+  <div class="pcard-foot"><span class="price">${kz(p.price)}</span><button class="btn sm" data-act="add" data-id="${p.id}">Adicionar ao carrinho</button></div></div></article>`;
+}
+const ico={
+  wallet:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M16 15h2"/></svg>',
+  send:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L10 14M21 4l-7 17-4-7-7-4z"/></svg>',
+  device:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>',
+  chat:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>'};
+
+/* ========= páginas ========= */
+function pHome(){
+  const feat=products.filter(p=>p.featured).slice(0,4);
+  const fanL=(feat.length>=3?feat:products).slice(0,3),fan=fanL.length>=3?fanL:fanL.slice(0,1);
+  const hasSales=enoughData();
+  const best=hasSales?[...products].sort((a,b)=>salesOf(b.id)-salesOf(a.id)).slice(0,4):[...products].slice(-4).reverse();
+  const quotes=settings.testimonials.split("\n").map(l=>l.split("|").map(s=>s.trim())).filter(a=>a[0]&&a[1]);
+  return `
+  <section class="hero"><div class="wrap hero-g">
+    <div><h1><span>Conhecimento que move.</span><span>Ideias que transformam.</span></h1>
+      <p class="lead">${esc(settings.heroSub)}</p>
+      <div class="hero-cta"><a class="btn" href="#/catalogo">Explorar e-books</a><a class="btn ghost" href="#/faq">Como funciona</a></div></div>
+    <div class="fan ${fan.length<3?"one":""}" aria-hidden="true">${fan.map(cover).join("")}</div>
+  </div></section>
+  ${feat.length?`<section class="sec"><div class="wrap"><div class="sec-h"><div><h2>E-books em destaque</h2><p>A selecção da casa.</p></div><a class="link" href="#/catalogo">Ver todo o catálogo</a></div><div class="grid">${feat.map(card).join("")}</div></div></section>`:""}
+  <section class="sec" style="padding-top:8px"><div class="wrap"><div class="sec-h"><h2>Categorias</h2></div>
+    <div class="cats">${CATS.filter(c=>products.some(p=>p.cat===c.id)).map(c=>{const n=products.filter(p=>p.cat===c.id).length;return `<a href="#/catalogo?cat=${c.id}"><b>${c.name}</b><small>${n} ${n===1?"e-book":"e-books"}</small></a>`}).join("")}</div></div></section>
+  ${products.length>4?`<section class="sec"><div class="wrap"><div class="sec-h"><div><h2>${hasSales?"Mais vendidos":"Novidades no catálogo"}</h2></div></div><div class="grid">${best.map(card).join("")}</div></div></section>`:""}
+  <section class="sec band"><div class="wrap benefits">
+    <div class="benefit">${ico.wallet}<h3>Preços em kwanzas</h3><p>Sem conversões. Pague por transferência bancária ou Multicaixa Express.</p></div>
+    <div class="benefit">${ico.send}<h3>Entrega digital</h3><p>Recebe o link de download depois de o pagamento ser confirmado.</p></div>
+    <div class="benefit">${ico.device}<h3>Leia onde quiser</h3><p>Ficheiros PDF que abrem no telemóvel, no tablet e no computador.</p></div>
+    <div class="benefit">${ico.chat}<h3>Apoio directo</h3><p>Fale com a equipa por WhatsApp ou e-mail se precisar de ajuda.</p></div>
+  </div></section>
+  ${quotes.length?`<section class="sec"><div class="wrap"><div class="sec-h"><h2>O que dizem os clientes</h2></div><div class="quotes">${quotes.map(q=>`<blockquote>${esc(q[1])}<cite>${esc(q[0])}</cite></blockquote>`).join("")}</div></div></section>`:""}
+  <section class="sec"><div class="wrap"><div class="sec-h"><h2>Perguntas frequentes</h2></div>${faqHtml()}</div></section>`;
+}
+function faqHtml(){return `<div class="faq">${FAQ.map(f=>`<details><summary>${esc(f[0])}</summary><p>${esc(f[1])}</p></details>`).join("")}</div>`}
+function pFaq(){return `<div class="wrap page"><h1>Perguntas frequentes</h1><p class="muted" style="margin-bottom:30px">Respostas às dúvidas mais comuns sobre encomendas, pagamento e entrega.</p>${faqHtml()}</div>`}
+
+function pCatalog(q){
+  const cat=q.get("cat")||"",term=q.get("q")||"",sort=q.get("sort")||"rel";
+  const opts=[["rel","Em destaque"],["preco-asc","Preço: do mais baixo"],["preco-desc","Preço: do mais alto"]];
+  if(enoughData())opts.push(["pop","Mais vendidos"]);
+  return `<div class="wrap page"><h1>Catálogo</h1><p class="muted">Pesquise por título ou palavra-chave e filtre por categoria.</p>
+  <div class="tools"><label class="sr" for="cq">Pesquisar no catálogo</label><input id="cq" type="search" placeholder="Pesquisar por título ou palavra-chave" value="${esc(term)}" autocomplete="off">
+  <label class="sr" for="csort">Ordenar</label><select id="csort">${opts.map(o=>`<option value="${o[0]}" ${o[0]===sort?"selected":""}>${o[1]}</option>`).join("")}</select></div>
+  <div class="chips" id="chips"></div><div id="results"></div></div>`;
+}
+function renderResults(){
+  const h=location.hash.slice(1),q=new URLSearchParams(h.split("?")[1]||"");
+  const cat=q.get("cat")||"",term=(q.get("q")||"").toLowerCase().trim(),sort=q.get("sort")||"rel";
+  $("#chips").innerHTML=[{id:"",name:"Todas"},...CATS.filter(c=>c.id===cat||products.some(p=>p.cat===c.id))].map(c=>`<button class="chip ${c.id===cat?"on":""}" data-act="cat" data-id="${c.id}">${c.name}</button>`).join("");
+  let list=products.filter(p=>(!cat||p.cat===cat)&&(!term||(p.title+" "+p.short+" "+p.long+" "+catName(p.cat)).toLowerCase().includes(term)));
+  if(sort==="preco-asc")list.sort((a,b)=>a.price-b.price);
+  else if(sort==="preco-desc")list.sort((a,b)=>b.price-a.price);
+  else if(sort==="pop"&&enoughData())list.sort((a,b)=>salesOf(b.id)-salesOf(a.id));
+  else list.sort((a,b)=>(b.featured?1:0)-(a.featured?1:0));
+  $("#results").innerHTML=list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<div class="empty"><p>Nenhum e-book encontrado.</p><button class="btn ghost" data-act="clear">Limpar pesquisa e filtros</button></div>`;
+}
+function setQuery(patch){
+  const h=location.hash.slice(1),q=new URLSearchParams(h.split("?")[1]||"");
+  for(const k in patch){patch[k]?q.set(k,patch[k]):q.delete(k)}
+  const s=q.toString();history.replaceState(null,"","#/catalogo"+(s?"?"+s:""));renderResults();
+}
+
+function pProduct(p){
+  const rel=products.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4);
+  const url=location.href.split("#")[0]+"#/livro/"+p.id;
+  const wa="https://wa.me/?text="+encodeURIComponent(p.title+" — "+url);
+  const fb="https://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(url);
+  return `<div class="wrap page"><div class="crumbs"><a href="#/">Início</a> / <a href="#/catalogo?cat=${p.cat}">${esc(catName(p.cat))}</a> / ${esc(p.title)}</div>
+  <div class="pd"><div style="position:relative">${cover(p)}${p.demo?'<span class="tagx">Exemplo</span>':""}</div>
+  <div><a class="pcard-cat" href="#/catalogo?cat=${p.cat}">${esc(catName(p.cat))}</a><h1>${esc(p.title)}</h1><p class="muted">por ${esc(p.author)}</p>
+  <span class="price">${kz(p.price)}</span>
+  <div class="pd-act"><button class="btn" data-act="add" data-id="${p.id}">Adicionar ao carrinho</button><button class="btn ghost" data-act="buy" data-id="${p.id}">Comprar agora</button></div>
+  <p style="max-width:62ch">${esc(p.long||p.short)}</p>${p.sample?`<p><button class="btn ghost sm" data-act="sample" data-id="${p.id}">Ler amostra grátis</button></p>`:""}${(p.toc&&p.toc.length)?`<h2 style="font-size:1.25rem;margin:26px 0 12px">O que vai encontrar</h2><ol class="toc">${p.toc.map(t=>`<li>${esc(t)}</li>`).join("")}</ol>`:""}
+  <div class="facts"><div><small>Formato</small>PDF</div><div><small>Páginas</small>${p.pages?esc(p.pages):"—"}</div><div><small>Entrega</small>Link após confirmação do pagamento</div></div>
+  <div class="share">Partilhar: <a class="link" target="_blank" rel="noopener" href="${wa}">WhatsApp</a><a class="link" target="_blank" rel="noopener" href="${fb}">Facebook</a><button class="link" data-act="copylink" data-url="${esc(url)}">Copiar link</button></div></div></div>
+  ${rel.length?`<section style="margin-top:70px"><div class="sec-h"><h2>Também pode gostar</h2></div><div class="grid">${rel.map(card).join("")}</div></section>`:""}</div>`;
+}
+
+/* ---- carrinho ---- */
+const cartTotal=()=>cart.reduce((s,i)=>{const p=byId(i.id);return s+(p?p.price*i.qty:0)},0);
+function cleanCart(){cart=cart.filter(i=>byId(i.id)&&i.qty>0)}
+function renderCart(){
+  cleanCart();
+  const n=cart.reduce((s,i)=>s+i.qty,0);$("#cartN").textContent=n||"";
+  $("#drb").innerHTML=cart.length?cart.map(i=>{const p=byId(i.id);return `<div class="line"><div>${cover(p)}</div><div><h4>${esc(p.title)}</h4><span class="price" style="font-size:.95rem">${kz(p.price)}</span><br>
+    <div class="qty"><button data-act="dec" data-id="${p.id}" aria-label="Diminuir quantidade">−</button><span aria-live="polite">${i.qty}</span><button data-act="inc" data-id="${p.id}" aria-label="Aumentar quantidade">+</button></div>
+    <button class="link muted" style="margin-left:14px;font-size:.85rem" data-act="rm" data-id="${p.id}">Remover</button></div></div>`}).join(""):`<div class="empty"><p>O carrinho está vazio.</p><a class="btn ghost" href="#/catalogo" data-act="closecart">Explorar e-books</a></div>`;
+  $("#drf").innerHTML=cart.length?`<div class="tot"><span>Subtotal</span><span>${kz(cartTotal())}</span></div><div class="tot big"><span>Total</span><span>${kz(cartTotal())}</span></div><a class="btn" style="width:100%" href="#/checkout" data-act="closecart">Finalizar encomenda</a>`:"";
+}
+function openCart(o){$("#drawer").classList.toggle("open",o);$("#ov").classList.toggle("open",o);$("#drawer").setAttribute("aria-hidden",String(!o));if(o)renderCart()}
+function addToCart(id,silent){const i=cart.find(x=>x.id===id);i?i.qty++:cart.push({id,qty:1});saveC();renderCart();if(!silent)toast("Adicionado ao carrinho")}
+
+/* ---- checkout ---- */
+let draft=null;
+function pCheckout(){
+  cleanCart();
+  if(!cart.length)return `<div class="wrap page"><h1>Finalizar encomenda</h1><div class="empty"><p>O carrinho está vazio.</p><a class="btn" href="#/catalogo">Explorar e-books</a></div></div>`;
+  const summary=`<aside class="panel"><h2 style="font-size:1.3rem;margin-bottom:10px">Resumo</h2>${cart.map(i=>{const p=byId(i.id);return `<div class="row"><span>${esc(p.title)} × ${i.qty}</span><span>${kz(p.price*i.qty)}</span></div>`}).join("")}
+    <div class="tot" style="margin-top:14px"><span>Subtotal</span><span>${kz(cartTotal())}</span></div><div class="tot big" style="margin-bottom:0"><span>Total</span><span>${kz(cartTotal())}</span></div></aside>`;
+  if(draft){
+    return `<div class="wrap page"><h1>Confirme a encomenda</h1><p class="muted">Reveja os dados antes de a registar.</p><div class="two" style="margin-top:26px"><div class="panel">
+    <dl class="kv"><dt>Nome</dt><dd>${esc(draft.name)}</dd><dt>E-mail</dt><dd>${esc(draft.email)}</dd><dt>Telefone</dt><dd>${esc(draft.phone)}</dd><dt>Pagamento</dt><dd>${draft.method==="multicaixa"?"Multicaixa Express":"Transferência bancária"}</dd>${draft.notes?`<dt>Notas</dt><dd>${esc(draft.notes)}</dd>`:""}</dl>
+    <p class="muted" style="font-size:.9rem">Ao confirmar, a encomenda fica registada como <b>Aguarda pagamento</b> e recebe as instruções para pagar.</p>
+    <div class="acts"><button class="btn" data-act="confirm" id="cbtn">Confirmar encomenda</button><button class="btn ghost" data-act="edit">Voltar e editar</button></div></div>${summary}</div></div>`;
+  }
+  const d={name:"",email:"",phone:"",method:"transferencia",notes:""};
+  return `<div class="wrap page"><h1>Finalizar encomenda</h1><p class="muted">Indique os dados para receber o e-book.</p><div class="two" style="margin-top:26px">
+  <form class="panel" data-form="checkout" novalidate>
+    <div class="fld"><label for="f-name">Nome completo</label><input class="in" id="f-name" name="name" autocomplete="name" required><small class="err" data-err="name"></small></div>
+    <div class="form-g"><div class="fld"><label for="f-email">E-mail</label><input class="in" id="f-email" name="email" type="email" autocomplete="email" required><small class="err" data-err="email"></small></div>
+    <div class="fld"><label for="f-phone">Telefone / WhatsApp</label><input class="in" id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="9XX XXX XXX" required><small class="err" data-err="phone"></small></div></div>
+    <fieldset style="border:0;padding:0;margin:0 0 16px"><legend style="font-size:.85rem;font-weight:600;margin-bottom:8px">Método de pagamento</legend><div class="pay">
+      <label><input type="radio" name="method" value="transferencia" checked><span>Transferência bancária<small>Os dados da conta aparecem depois de confirmar.</small></span></label>
+      <label><input type="radio" name="method" value="multicaixa"><span>Multicaixa Express<small>Pague pelo número indicado depois de confirmar.</small></span></label></div></fieldset>
+    <div class="fld"><label for="f-notes">Notas (opcional)</label><textarea class="in" id="f-notes" name="notes" style="min-height:70px"></textarea></div>
+    <button class="btn" type="submit">Rever encomenda</button></form>${summary}</div></div>`;
+}
+function validate(f){
+  const v=Object.fromEntries(new FormData(f).entries());const e={};
+  if((v.name||"").trim().length<3)e.name="Escreva o seu nome completo.";
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test((v.email||"").trim()))e.email="Escreva um e-mail válido.";
+  if(digits(v.phone).length<9)e.phone="Escreva um telefone com pelo menos 9 dígitos.";
+  f.querySelectorAll("[data-err]").forEach(x=>x.textContent=e[x.dataset.err]||"");
+  return Object.keys(e).length?null:{name:v.name.trim(),email:v.email.trim(),phone:v.phone.trim(),method:v.method,notes:(v.notes||"").trim()};
+}
+function newRef(){const d=new Date(),p=n=>String(n).padStart(2,"0");let r="";const a=new Uint32Array(1);crypto.getRandomValues(a);r=a[0].toString(36).toUpperCase().padStart(4,"0").slice(-4);return `XV-${String(d.getFullYear()).slice(2)}${p(d.getMonth()+1)}${p(d.getDate())}-${r}`}
+function createOrder(){
+  const items=cart.map(i=>{const p=byId(i.id);return {id:p.id,title:p.title,price:p.price,qty:i.qty}});
+  const sig=items.map(i=>i.id+"x"+i.qty).join(",")+"|"+draft.email.toLowerCase();
+  const dup=orders.find(o=>o.sig===sig&&o.status==="aguarda"&&Date.now()-o.ts<10*60*1000);
+  if(dup)return dup;
+  const o={ref:newRef(),ts:Date.now(),sig,customer:{name:draft.name,email:draft.email,phone:draft.phone},notes:draft.notes,method:draft.method,items,total:items.reduce((s,i)=>s+i.price*i.qty,0),status:"aguarda"};
+  orders.unshift(o);saveO();return o;
+}
+function orderText(o){
+  return [`Olá! Fiz a encomenda ${o.ref} na ${settings.brand}.`,"",...o.items.map(i=>`• ${i.title} × ${i.qty} — ${kz(i.price*i.qty)}`),"",`Total: ${kz(o.total)}`,`Pagamento: ${o.method==="multicaixa"?"Multicaixa Express":"Transferência bancária"}`,`Nome: ${o.customer.name}`,`E-mail: ${o.customer.email}`,`Telefone: ${o.customer.phone}`,"","Segue o comprovativo de pagamento."].join("\n");
+}
+function payInfo(o){
+  const b=settings.bank,m=settings.multicaixa;
+  if(o.method==="multicaixa"){
+    return m.number?`<dl class="kv"><dt>Multicaixa Express</dt><dd>${esc(m.number)}</dd>${m.name?`<dt>Titular</dt><dd>${esc(m.name)}</dd>`:""}<dt>Valor</dt><dd><b>${kz(o.total)}</b></dd><dt>Referência</dt><dd>${o.ref}</dd></dl>`:`<p class="notice warn">Os dados de Multicaixa Express ainda não estão configurados. A ${esc(settings.brand)} enviará as instruções de pagamento por WhatsApp ou e-mail.</p>`;
+  }
+  return b.iban?`<dl class="kv">${b.name?`<dt>Banco</dt><dd>${esc(b.name)}</dd>`:""}<dt>IBAN</dt><dd>${esc(b.iban)}</dd>${b.holder?`<dt>Titular</dt><dd>${esc(b.holder)}</dd>`:""}<dt>Valor</dt><dd><b>${kz(o.total)}</b></dd><dt>Descrição</dt><dd>${o.ref}</dd></dl>`:`<p class="notice warn">Os dados bancários ainda não estão configurados. A ${esc(settings.brand)} enviará as instruções de pagamento por WhatsApp ou e-mail.</p>`;
+}
+function pOrder(ref){
+  const o=orders.find(x=>x.ref===ref);
+  if(!o)return `<div class="wrap page"><h1>Encomenda não encontrada</h1><p class="muted">Esta encomenda não está guardada neste dispositivo.</p><a class="btn" href="#/catalogo">Voltar ao catálogo</a></div>`;
+  const wa=phoneAO(settings.whatsapp),mail=settings.email;
+  const paid=o.status==="pago"||o.status==="entregue";
+  return `<div class="wrap page"><h1>Encomenda registada</h1>
+  <p class="muted">Referência <b style="color:var(--text)">${o.ref}</b> <span class="status st-${o.status}" style="margin-left:8px">${ST[o.status]}</span></p>
+  <div class="two" style="margin-top:26px"><div>
+    ${paid?`<div class="panel" style="margin-bottom:20px"><h2 style="font-size:1.3rem;margin-bottom:10px">Os seus e-books</h2>${o.items.map(i=>{const p=byId(i.id);return `<div class="row"><span>${esc(i.title)}</span>${lk(p)?`<a class="link" target="_blank" rel="noopener" href="${esc(lk(p))}">Descarregar</a>`:'<span class="muted">Ficheiro a enviar pela loja</span>'}</div>`}).join("")}</div>`:""}
+    <div class="panel"><h2 style="font-size:1.3rem;margin-bottom:10px">${paid?"Pagamento":"Como pagar"}</h2>${payInfo(o)}
+    <p class="notice" style="margin-top:14px">Depois de pagar, envie o comprovativo à ${esc(settings.brand)}. Quando o pagamento for confirmado, recebe o ficheiro PDF (ou o link de download) por WhatsApp ou e-mail. O estado mostrado aqui é o registado neste dispositivo.</p>
+    ${(wa||mail)?"":`<p class="notice warn">A loja ainda não tem WhatsApp ou e-mail de recepção configurados. Copie o resumo abaixo e envie-o ao vendedor.</p>`}
+    <div class="acts">${wa?`<a class="btn" target="_blank" rel="noopener" href="https://wa.me/${wa}?text=${encodeURIComponent(orderText(o))}">Enviar pedido por WhatsApp</a>`:""}${mail?`<a class="btn ghost" href="mailto:${esc(mail)}?subject=${encodeURIComponent("Encomenda "+o.ref)}&body=${encodeURIComponent(orderText(o))}">Enviar por e-mail</a>`:""}<button class="btn ghost" data-act="copytext" data-ref="${o.ref}">Copiar resumo</button></div></div></div>
+  <aside class="panel"><h2 style="font-size:1.3rem;margin-bottom:10px">Resumo</h2>${o.items.map(i=>`<div class="row"><span>${esc(i.title)} × ${i.qty}</span><span>${kz(i.price*i.qty)}</span></div>`).join("")}<div class="tot big" style="margin:14px 0 0"><span>Total</span><span>${kz(o.total)}</span></div></aside></div></div>`;
+}
+function pOrders(){
+  return `<div class="wrap page"><h1>Os meus pedidos</h1><p class="muted">Encomendas feitas neste dispositivo.</p><div style="margin-top:24px;max-width:720px">${orders.length?orders.map(o=>`<a class="row" href="#/pedido/${o.ref}"><span><b>${o.ref}</b><br><small class="muted">${new Date(o.ts).toLocaleDateString("pt-PT")} · ${o.items.length} e-book(s)</small></span><span style="text-align:right">${kz(o.total)}<br><span class="status st-${o.status}">${ST[o.status]}</span></span></a>`).join(""):`<div class="empty"><p>Ainda não fez nenhuma encomenda.</p><a class="btn" href="#/catalogo">Explorar e-books</a></div>`}</div></div>`;
+}
+const LEGAL_NAMES={termos:"Termos e condições",privacidade:"Política de privacidade",reembolso:"Reembolso e cancelamento",digital:"Venda de produtos digitais",contactos:"Contactos e identificação"};
+function pLegal(k){
+  if(!LEGAL_NAMES[k])return pNotFound();
+  const extra=k==="contactos"?`<p>${[settings.nif&&"Identificação comercial: "+settings.nif,settings.address,settings.phone&&"Telefone: "+settings.phone,settings.email&&"E-mail: "+settings.email].filter(Boolean).map(esc).join("\n")}</p>`:"";
+  return `<div class="wrap page legal"><h1>${LEGAL_NAMES[k]}</h1><p class="notice">Texto-modelo editável em Administração › Definições. Deve ser revisto de acordo com a legislação angolana aplicável.</p><p>${esc(settings.legal[k])}</p>${extra}</div>`;
+}
+const pNotFound=()=>`<div class="wrap page"><h1>Página não encontrada</h1><p class="muted">O endereço não existe ou foi alterado.</p><a class="btn" href="#/">Ir para o início</a></div>`;
+
+/* ========= administração ========= */
+const adm={tab:"resumo",edit:null,cover:undefined,authed:false};
+try{adm.authed=sessionStorage.getItem("xv_adm")==="1"}catch(e){}
+async function sha(s){try{const b=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("xv:"+s));return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("")}catch(e){let h=0;for(const c of s)h=(h*31+c.charCodeAt(0))|0;return "f"+h}}
+function gate(mode){
+  const setup=mode==="setup";
+  return `<div class="wrap page"><div class="panel" style="max-width:440px;margin:30px auto"><h1 style="font-size:1.8rem">${setup?"Criar PIN de administrador":"Administração"}</h1>
+  <p class="muted" style="margin-top:8px">${setup?"Escolha um PIN com pelo menos 6 caracteres. Fica guardado (cifrado) apenas neste navegador.":"Introduza o seu PIN."}</p>
+  <form data-form="${setup?"adm-setup":"adm-login"}" style="margin-top:18px"><div class="fld"><label for="pin">PIN</label><input class="in" id="pin" name="pin" type="password" autocomplete="${setup?"new-password":"current-password"}" required minlength="6"><small class="err" id="pin-err"></small></div>
+  ${setup?`<div class="fld"><label for="pin2">Repetir PIN</label><input class="in" id="pin2" name="pin2" type="password" autocomplete="new-password" required></div>`:""}
+  <button class="btn" type="submit">${setup?"Criar PIN e entrar":"Entrar"}</button></form></div></div>`;
+}
+function pAdmin(){
+  if(!store.get("xv_adm_hash",null))return gate("setup");
+  if(!adm.authed)return gate("login");
+  const tabs=[["resumo","Resumo"],["produtos","Produtos"],["encomendas","Encomendas"],["definicoes","Definições"]];
+  const body={resumo:aResumo,produtos:aProdutos,encomendas:aEncomendas,definicoes:aDefinicoes}[adm.tab]();
+  return `<div class="wrap page"><div class="sec-h" style="margin-bottom:0"><h1>Administração</h1><div class="acts" style="margin:0">${pending?'<button class="btn sm" data-act="publish">Publicar alterações</button>':'<span class="muted" style="font-size:.85rem">Tudo publicado</span>'}<button class="btn ghost sm" data-act="logout">Terminar sessão</button></div></div>${pending?'<p class="notice" style="margin:18px 0 0">Tem alterações por publicar. Só ficam visíveis para os clientes depois de carregar em <b>Publicar alterações</b>.</p>':""}
+  <div class="tabs" role="tablist">${tabs.map(t=>`<button role="tab" class="${adm.tab===t[0]?"on":""}" data-act="tab" data-id="${t[0]}">${t[1]}</button>`).join("")}</div>${body}</div>`;
+}
+function aResumo(){
+  const paid=paidOrders(),rev=paid.reduce((s,o)=>s+o.total,0),pend=orders.filter(o=>o.status==="aguarda"||o.status==="comprovativo").length;
+  const top=products.map(p=>({p,n:salesOf(p.id)})).filter(x=>x.n>0).sort((a,b)=>b.n-a.n).slice(0,5);
+  const miss=[];
+  if(!settings.whatsapp&&!settings.email)miss.push("WhatsApp ou e-mail de recepção de encomendas");
+  if(!settings.bank.iban&&!settings.multicaixa.number)miss.push("dados de pagamento (IBAN ou Multicaixa Express)");
+  if(products.some(p=>p.demo))miss.push("substituir ou editar os e-books de demonstração");
+    return `${miss.length?`<div class="notice warn"><b>Por configurar:</b> ${miss.join("; ")}.</div>`:""}
+  <div class="stats"><div class="stat"><small>Receita confirmada</small><b>${kz(rev)}</b></div><div class="stat"><small>Encomendas</small><b>${orders.length}</b></div><div class="stat"><small>A aguardar pagamento</small><b>${pend}</b></div><div class="stat"><small>E-books no catálogo</small><b>${products.length}</b></div></div>
+  <h2 style="font-size:1.3rem;margin-bottom:10px">Mais vendidos</h2>${top.length?top.map(x=>`<div class="row"><span>${esc(x.p.title)}</span><span>${x.n} venda(s)</span></div>`).join(""):'<p class="muted">Sem vendas confirmadas ainda. Marque encomendas como pagas no separador Encomendas.</p>'}
+  <p class="notice" style="margin-top:28px">As alterações a e-books e definições ficam como rascunho neste navegador até carregar em <b>Publicar alterações</b>. As encomendas feitas pelos clientes chegam-lhe por WhatsApp ou e-mail; as que aparecem aqui são só as feitas neste dispositivo.</p>`;
+}
+function fld(name,label,val,opt={}){
+  const t=opt.type||"text";
+  return `<div class="fld ${opt.full?"full":""}"><label for="a-${name}">${label}</label>${t==="textarea"?`<textarea class="in" id="a-${name}" name="${name}" ${opt.rows?`style="min-height:${opt.rows*24}px"`:""}>${esc(val)}</textarea>`:t==="select"?`<select class="in" id="a-${name}" name="${name}">${opt.options.map(o=>`<option value="${o[0]}" ${o[0]===val?"selected":""}>${o[1]}</option>`).join("")}</select>`:`<input class="in" id="a-${name}" name="${name}" type="${t}" value="${esc(val)}" ${opt.req?"required":""} ${opt.ph?`placeholder="${esc(opt.ph)}"`:""}>`}${opt.help?`<small>${opt.help}</small>`:""}</div>`;
+}
+function aProdutos(){
+  if(adm.edit){
+    const p=adm.edit==="new"?{title:"",author:"XAVIER'S",cat:"negocios",price:"",pages:"",short:"",long:"",featured:false,cover:"",toc:[],sample:""}:byId(adm.edit);
+    const cv=adm.cover!==undefined?adm.cover:p.cover;
+    return `<form data-form="adm-product" class="panel"><h2 style="font-size:1.4rem;margin-bottom:18px">${adm.edit==="new"?"Novo e-book":"Editar e-book"}</h2><div class="form-g">
+    ${fld("title","Título",p.title,{req:1})}${fld("author","Autor",p.author)}
+    ${fld("cat","Categoria",p.cat,{type:"select",options:CATS.map(c=>[c.id,c.name])})}${fld("price","Preço (Kz)",p.price,{type:"number",req:1})}
+    ${fld("pages","Número de páginas",p.pages,{type:"number"})}${fld("url","Link de download (opcional)",links[p.id]||"",{type:"url",ph:"https://…",help:"Fica guardado só neste navegador e nunca é publicado. Sem link, envie o PDF em anexo por WhatsApp ou e-mail."})}
+    ${fld("short","Descrição curta",p.short,{full:1,type:"textarea",rows:2})}${fld("long","Descrição completa",p.long,{full:1,type:"textarea",rows:5})}${fld("toc","Conteúdo (um capítulo por linha)",(p.toc||[]).join("\n"),{full:1,type:"textarea",rows:5})}${fld("sample","Amostra grátis (opcional)",p.sample||"",{full:1,type:"textarea",rows:6,help:"Texto que o cliente pode ler antes de comprar. Linhas a começar por <b># </b> são títulos; linhas a começar por <b>• </b> são listas."})}
+    <div class="fld full"><label for="a-cover">Capa (opcional)</label><div style="display:flex;gap:16px;align-items:center"><div id="cvprev" style="width:80px">${cover({...p,cover:cv,title:p.title||"Título"})}</div><div><input id="a-cover" type="file" accept="image/*"><br><button type="button" class="link muted" data-act="rmcover" style="margin-top:6px;font-size:.85rem">Usar capa automática</button></div></div><small>Sem imagem, a loja gera uma capa com o título.</small></div>
+    <label class="chk full" style="margin-bottom:18px"><input type="checkbox" name="featured" ${p.featured?"checked":""}> Mostrar em destaque na página inicial</label></div>
+    <div class="acts" style="margin-top:0"><button class="btn" type="submit">Guardar e-book</button><button class="btn ghost" type="button" data-act="adm-cancel">Cancelar</button></div></form>`;
+  }
+  return `<div class="sec-h" style="margin-bottom:10px"><p class="muted" style="margin:0">${products.length} e-books</p><button class="btn sm" data-act="adm-new">Adicionar e-book</button></div>
+  ${products.map(p=>`<div class="arow"><div>${cover(p)}</div><div><b>${esc(p.title)}</b>${p.demo?' <span class="status">Exemplo</span>':""}<br><small class="muted">${esc(catName(p.cat))} · ${kz(p.price)}</small></div>
+  <div class="acts"><button class="btn ghost sm" data-act="adm-edit" data-id="${p.id}">Editar</button><button class="btn danger sm" data-act="adm-del" data-id="${p.id}">Remover</button></div></div>`).join("")||'<div class="empty">Sem e-books. Adicione o primeiro.</div>'}`;
+}
+function deliveryText(o){
+  const items=o.items.map(i=>{const l=lk(byId(i.id));return l?`• ${i.title}: ${l}`:`• ${i.title}: segue o ficheiro PDF em anexo nesta conversa.`});
+  return [`Olá ${o.customer.name}, ${o.ref?`o pagamento da encomenda ${o.ref} foi confirmado`:"o seu pagamento foi confirmado"}. Obrigado por comprar na ${settings.brand}!`,"","Os seus e-books:",...items,"","Guarde o ficheiro num local seguro. Qualquer dúvida, responda a esta mensagem."].join("\n");
+}
+function aEnviar(){
+  return `<form class="panel" data-form="adm-send" style="margin-bottom:26px"><h2 style="font-size:1.3rem;margin-bottom:6px">Enviar e-book a um cliente</h2>
+  <p class="muted" style="font-size:.9rem">Depois de confirmar o pagamento, gere a mensagem de entrega. Se o e-book não tiver link, anexe o PDF à conversa antes de enviar.</p>
+  <div class="form-g">${fld("sname","Nome do cliente","",{req:1})}${fld("sphone","WhatsApp do cliente","",{type:"tel"})}${fld("semail","E-mail do cliente","",{type:"email"})}</div>
+  <div class="fld"><label>E-books</label>${products.map(p=>`<label class="chk" style="margin-bottom:6px"><input type="checkbox" name="sp" value="${p.id}"${products.length===1?" checked":""}> ${esc(p.title)}</label>`).join("")}</div>
+  <div class="acts" style="margin-top:0"><button class="btn sm" type="submit" data-via="wa">Abrir no WhatsApp</button><button class="btn ghost sm" type="submit" data-via="mail">Abrir no e-mail</button></div></form>`;
+}
+function aEncomendas(){
+  if(!orders.length)return aEnviar()+`<div class="empty"><p>Ainda não há encomendas registadas neste dispositivo.</p></div>`;
+  return aEnviar()+orders.map(o=>{
+    const paid=o.status==="pago"||o.status==="entregue",noUrl=paid&&o.items.some(i=>!lk(byId(i.id)));
+    const ph=phoneAO(o.customer.phone);
+    return `<div class="ord"><div class="ord-h"><div><b>${o.ref}</b> <span class="status st-${o.status}" style="margin-left:6px">${ST[o.status]}</span><br><small class="muted">${new Date(o.ts).toLocaleString("pt-PT")} · ${o.method==="multicaixa"?"Multicaixa Express":"Transferência"}</small></div><b class="price">${kz(o.total)}</b></div>
+    <dl class="kv"><dt>Cliente</dt><dd>${esc(o.customer.name)}</dd><dt>Contacto</dt><dd>${esc(o.customer.email)} · ${esc(o.customer.phone)}</dd><dt>E-books</dt><dd>${o.items.map(i=>esc(i.title)+" × "+i.qty).join("<br>")}</dd>${o.notes?`<dt>Notas</dt><dd>${esc(o.notes)}</dd>`:""}</dl>
+    ${noUrl?'<p class="notice">Sem link de download: anexe o PDF à conversa antes de enviar a mensagem.</p>':""}
+    <div class="acts" style="margin-top:6px"><label class="sr" for="s-${o.ref}">Estado</label><select class="in" id="s-${o.ref}" style="width:auto" data-status="${o.ref}">${Object.entries(ST).map(s=>`<option value="${s[0]}" ${s[0]===o.status?"selected":""}>${s[1]}</option>`).join("")}</select>
+    ${paid?`<a class="btn sm" target="_blank" rel="noopener" href="https://wa.me/${ph}?text=${encodeURIComponent(deliveryText(o))}">Enviar links por WhatsApp</a><a class="btn ghost sm" href="mailto:${esc(o.customer.email)}?subject=${encodeURIComponent("Os seus e-books — "+o.ref)}&body=${encodeURIComponent(deliveryText(o))}">Enviar links por e-mail</a>`:""}
+    <button class="btn danger sm" data-act="ord-del" data-ref="${o.ref}">Remover</button></div></div>`}).join("");
+}
+function aDefinicoes(){
+  const s=settings,g=(n)=>getPath(s,n);
+  const L=s.legal;
+  return `<form data-form="adm-settings">
+  <h2 class="set-h">Contactos e identificação</h2><div class="form-g">
+  ${fld("whatsapp","WhatsApp da loja",g("whatsapp"),{type:"tel",ph:"9XX XXX XXX",help:"Recebe as encomendas e os comprovativos."})}${fld("email","E-mail da loja",g("email"),{type:"email"})}
+  ${fld("phone","Telefone",g("phone"),{type:"tel"})}${fld("address","Morada",g("address"))}${fld("nif","Denominação social e NIF",g("nif"),{full:1})}</div>
+  <h2 class="set-h">Pagamentos</h2><div class="form-g">
+  ${fld("bank.name","Banco",g("bank.name"))}${fld("bank.holder","Titular da conta",g("bank.holder"))}${fld("bank.iban","IBAN",g("bank.iban"),{full:1,ph:"AO06 …"})}
+  ${fld("multicaixa.number","Número Multicaixa Express",g("multicaixa.number"),{type:"tel"})}${fld("multicaixa.name","Nome associado",g("multicaixa.name"))}</div>
+  <h2 class="set-h">Redes sociais</h2><div class="form-g">${fld("social.instagram","Instagram (endereço completo)",g("social.instagram"),{type:"url"})}${fld("social.facebook","Facebook (endereço completo)",g("social.facebook"),{type:"url"})}${fld("social.tiktok","TikTok (endereço completo)",g("social.tiktok"),{type:"url"})}</div>
+  <h2 class="set-h">Página inicial</h2>${fld("heroSub","Texto por baixo do título",g("heroSub"),{type:"textarea",rows:3})}
+  ${fld("testimonials","Testemunhos de clientes",g("testimonials"),{type:"textarea",rows:4,help:"Um por linha, no formato <b>Nome | Texto</b>. Use apenas avaliações reais. Sem linhas, a secção não aparece."})}
+  <h2 class="set-h">Páginas legais</h2>
+  ${Object.keys(LEGAL_NAMES).map(k=>fld("legal."+k,LEGAL_NAMES[k],L[k],{type:"textarea",rows:5})).join("")}
+  <div class="acts"><button class="btn" type="submit">Guardar definições</button></div></form>
+  <h2 class="set-h">Cópia de segurança</h2><p class="muted">Copie este texto e guarde-o num local seguro. Para repor, cole-o na caixa abaixo.</p>
+  <textarea class="in" id="bk" readonly style="min-height:90px;font-size:.78rem">${esc(JSON.stringify({products,settings,orders}))}</textarea>
+  <div class="acts"><button class="btn ghost sm" data-act="bk-copy">Copiar cópia de segurança</button></div>
+  <textarea class="in" id="bki" placeholder="Cole aqui uma cópia de segurança para repor" style="min-height:70px;margin-top:16px"></textarea>
+  <div class="acts"><button class="btn ghost sm" data-act="bk-import">Repor cópia de segurança</button></div>
+  <h2 class="set-h">Alterar PIN</h2><form data-form="adm-pin" style="max-width:340px"><div class="fld"><label for="npin">Novo PIN (mínimo 6 caracteres)</label><input class="in" id="npin" name="pin" type="password" minlength="6" required autocomplete="new-password"></div><button class="btn ghost sm" type="submit">Alterar PIN</button></form>
+  <p class="notice" style="margin-top:28px">O PIN protege o painel apenas neste navegador. O que protege a loja é o botão Publicar alterações: só o dono desta página consegue publicar.</p>`;
+}
+
+/* ========= amostra ========= */
+function openModal(o){const m=$("#modal");m.classList.toggle("open",o);m.setAttribute("aria-hidden",String(!o))}
+function sampleHtml(t){
+  return String(t).split(/\n\s*\n/).map(b=>{b=b.trim();if(!b)return "";if(b.startsWith("# "))return `<h3>${esc(b.slice(2))}</h3>`;
+    const ls=b.split("\n");if(ls.every(l=>l.trim().startsWith("• ")))return `<ul>${ls.map(l=>`<li>${esc(l.trim().slice(2))}</li>`).join("")}</ul>`;
+    if(ls[0].startsWith("# "))return `<h3>${esc(ls[0].slice(2))}</h3>`+sampleHtml(ls.slice(1).join("\n\n").replace(/\n/g," "));
+    return `<p>${esc(b.replace(/\n/g," "))}</p>`}).join("");
+}
+function openSample(id){
+  const p=byId(id);if(!p||!p.sample)return;
+  $("#mt").textContent="Amostra grátis: "+p.title;$("#mb").innerHTML=sampleHtml(p.sample);
+  $("#mf").innerHTML=`<div class="acts" style="margin:0"><button class="btn" data-act="add" data-id="${p.id}">Adicionar ao carrinho · ${kz(p.price)}</button><button class="btn ghost" data-act="closemodal">Continuar a ler a página</button></div>`;
+  openModal(true);$("#mb").scrollTop=0;
+}
+
+/* ========= publicar (só o dono da página consegue) ========= */
+const DEFAULT_DESC="Conhecimento que move. Ideias que transformam. E-books e guias digitais em PDF, com preços em kwanzas.";
+function buildHtml(){
+  const cl=s=>document.querySelector(s).cloneNode(true);
+  const demo=cl("#demobar");demo.innerHTML="";
+  const hd=cl("header.top");hd.querySelectorAll(".nav a.on").forEach(a=>a.classList.remove("on"));const hq=hd.querySelector("#hq");if(hq)hq.removeAttribute("value");const bd=hd.querySelector("#cartN");if(bd)bd.textContent="";
+  const app=cl("#app");app.innerHTML="";const ft=cl("#foot");ft.innerHTML="";
+  const ov=cl("#ov");ov.className="ov";
+  const dr=cl("#drawer");dr.className="drawer";dr.setAttribute("aria-hidden","true");dr.querySelector("#drb").innerHTML="";dr.querySelector("#drf").innerHTML="";
+  const md=cl("#modal");md.className="modal";md.setAttribute("aria-hidden","true");md.querySelector("#mt").textContent="";md.querySelector("#mb").innerHTML="";md.querySelector("#mf").innerHTML="";
+  const ts=cl("#toast");ts.className="toast";ts.textContent="";
+  const data=JSON.stringify({products,settings}).replace(/</g,"\\u003c");
+  const css=document.getElementById("xv-css").textContent;
+  const head='<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>XAVIER\'S — Digital Bookstore</title>'
+   +'<meta name="description" content="'+DEFAULT_DESC+'"><meta property="og:type" content="website"><meta property="og:title" content="XAVIER\'S — Digital Bookstore"><meta property="og:description" content="Conhecimento que move. Ideias que transformam. E-books e guias digitais em PDF."><meta property="og:locale" content="pt_AO"><meta name="theme-color" content="#04060b">'
+   +'<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+   +'<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">'
+   +'<script type="application/ld+json" id="ld">{}<\/script><style id="xv-css">'+css+'</style>';
+  return "<!DOCTYPE html>\n<html lang=\"pt-AO\"><head>"+head+"</head><body>"+demo.outerHTML+hd.outerHTML+app.outerHTML
+   +"<noscript><p style=\"padding:40px;text-align:center\">Este site precisa de JavaScript activo para funcionar.</p></noscript>"
+   +ft.outerHTML+ov.outerHTML+dr.outerHTML+md.outerHTML+ts.outerHTML
+   +'<script type="application/json" id="xv-data">'+data+'<\/script><script id="xv-main">'+SELF+'<\/script></body></html>';
+}
+let publishing=false;
+async function publishSite(btn){
+  if(publishing)return;
+  let art=null;try{art=window.claude&&await window.claude.use("artifact")}catch(e){}
+  if(!art){toast("Só o dono da página pode publicar, e a partir da página aberta no claude.ai.");return}
+  publishing=true;if(btn)btn.disabled=true;
+  try{await art.publish(buildHtml());pending=null;store.set("xv_draft",null);toast("Alterações publicadas.")}
+  catch(e){const c=e&&e.code;toast(c==="conflict"?"A página foi actualizada entretanto. Volte a abrir e repita.":c==="not_writer"||c==="not_granted"?"Esta conta não pode publicar alterações.":"Não foi possível publicar. Tente outra vez.");if(btn)btn.disabled=false}
+  publishing=false;
+}
+
+/* ========= router ========= */
+function route(keep){
+  const raw=location.hash.slice(1)||"/",[path,qs=""]=raw.split("?"),q=new URLSearchParams(qs),seg=path.split("/").filter(Boolean),r=seg[0]||"home";
+  let html,title="XAVIER'S — Digital Bookstore",desc=settings.tagline+" E-books e guias digitais em PDF, com preços em kwanzas.";
+  let ld={"@context":"https://schema.org","@type":"Store",name:"XAVIER'S — Digital Bookstore",description:desc,areaServed:"AO",currenciesAccepted:"AOA"};
+  switch(r){
+    case "home":html=pHome();break;
+    case "catalogo":html=pCatalog(q);title="Catálogo de e-books | XAVIER'S";desc="Explore e-books de negócios, carreira, direito, gestão e finanças pessoais.";break;
+    case "livro":{const p=byId(seg[1]);if(p){html=pProduct(p);title=p.title+" | XAVIER'S";desc=p.short;ld={"@context":"https://schema.org","@type":"Product",name:p.title,description:p.short,category:catName(p.cat),brand:{"@type":"Brand",name:"XAVIER'S"},offers:{"@type":"Offer",price:p.price,priceCurrency:"AOA",availability:"https://schema.org/InStock"}}}else html=pNotFound();break}
+    case "checkout":if(raw!==route.last)draft=draft;html=pCheckout();title="Finalizar encomenda | XAVIER'S";break;
+    case "pedido":html=pOrder(seg[1]);title="Encomenda | XAVIER'S";break;
+    case "pedidos":html=pOrders();title="Os meus pedidos | XAVIER'S";break;
+    case "faq":html=pFaq();title="Perguntas frequentes | XAVIER'S";break;
+    case "legal":html=pLegal(seg[1]);title=(LEGAL_NAMES[seg[1]]||"Informação")+" | XAVIER'S";break;
+    case "admin":html=pAdmin();title="Administração | XAVIER'S";break;
+    default:html=pNotFound();
+  }
+  route.last=raw;openModal(false);
+  const y=window.scrollY;
+  $("#app").innerHTML=html;
+  if(!keep)window.scrollTo(0,0);else window.scrollTo(0,y);
+  document.title=title;$("meta[name=description]").setAttribute("content",desc);
+  $("#ld").textContent=JSON.stringify(ld);
+  document.querySelectorAll(".nav a").forEach(a=>a.classList.toggle("on",a.dataset.r===r&&!(a.dataset.r==="x1")));
+  if(r==="catalogo")renderResults();
+  if(r!=="checkout"&&r!=="pedido")draft=null;
+  renderChrome();
+}
+function renderChrome(){
+  $("#demobar").innerHTML=products.some(p=>p.demo)?`<div class="demobar">Loja em preparação: os e-books mostrados são de demonstração.</div>`:"";
+  const s=settings,soc=[["Instagram",s.social.instagram],["Facebook",s.social.facebook],["TikTok",s.social.tiktok]].filter(x=>x[1]);
+  $("#foot").innerHTML=`<div class="wrap"><div class="foot-g">
+  <div><div class="logo" style="margin-bottom:14px"><b>XAVIER'S</b><small>Digital Bookstore</small></div><p class="muted" style="font-size:.9rem;max-width:30ch">${esc(s.tagline)}</p></div>
+  <div><h4>Loja</h4><ul><li><a href="#/catalogo">Catálogo</a></li><li><a href="#/pedidos">Os meus pedidos</a></li><li><a href="#/faq">Perguntas frequentes</a></li></ul></div>
+  <div><h4>Informação</h4><ul>${Object.keys(LEGAL_NAMES).map(k=>`<li><a href="#/legal/${k}">${LEGAL_NAMES[k]}</a></li>`).join("")}</ul></div>
+  <div><h4>Contactos</h4><ul>${s.whatsapp?`<li>WhatsApp: ${esc(s.whatsapp)}</li>`:""}${s.email?`<li><a href="mailto:${esc(s.email)}">${esc(s.email)}</a></li>`:""}${s.address?`<li>${esc(s.address)}</li>`:""}${soc.map(x=>`<li><a target="_blank" rel="noopener" href="${esc(x[1])}">${x[0]}</a></li>`).join("")}</ul></div>
+  </div><div class="copy"><span>© ${new Date().getFullYear()} XAVIER'S. Todos os direitos reservados.</span><a href="#/admin">Administração</a></div></div>`;
+  renderCart();
+}
+
+/* ========= eventos ========= */
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("[data-act]");if(!t)return;
+  const a=t.dataset.act,id=t.dataset.id;
+  switch(a){
+    case "add":addToCart(id);break;
+    case "buy":addToCart(id,true);location.hash="#/checkout";break;
+    case "cart":openCart(true);break;
+    case "closecart":openCart(false);break;
+    case "inc":{const i=cart.find(x=>x.id===id);if(i){i.qty=Math.min(i.qty+1,20);saveC();renderCart()}break}
+    case "dec":{const i=cart.find(x=>x.id===id);if(i){i.qty--;if(i.qty<1)cart=cart.filter(x=>x.id!==id);saveC();renderCart()}break}
+    case "rm":cart=cart.filter(x=>x.id!==id);saveC();renderCart();break;
+    case "cat":setQuery({cat:id});break;
+    case "clear":$("#cq").value="";history.replaceState(null,"","#/catalogo");$("#csort").value="rel";renderResults();break;
+    case "copylink":copy(t.dataset.url,"Link copiado.");break;
+    case "copytext":{const o=orders.find(x=>x.ref===t.dataset.ref);if(o)copy(orderText(o),"Resumo copiado.");break}
+    case "edit":draft=draft?{...draft}:null;{const d=draft;draft=null;route(true);if(d){$("#f-name").value=d.name;$("#f-email").value=d.email;$("#f-phone").value=d.phone;$("#f-notes").value=d.notes;document.querySelector(`input[name=method][value=${d.method}]`).checked=true}}break;
+    case "confirm":{t.disabled=true;const o=createOrder();cart=[];saveC();draft=null;renderCart();location.hash="#/pedido/"+o.ref;break}
+    case "publish":publishSite(t);break;
+    case "sample":openSample(id);break;
+    case "closemodal":openModal(false);break;
+    case "logout":adm.authed=false;try{sessionStorage.removeItem("xv_adm")}catch(x){}route();break;
+    case "tab":adm.tab=id;adm.edit=null;route(true);break;
+    case "adm-new":adm.edit="new";adm.cover=undefined;route(true);break;
+    case "adm-edit":adm.edit=id;adm.cover=undefined;route(true);break;
+    case "adm-cancel":adm.edit=null;route(true);break;
+    case "adm-del":if(twice("del"+id)){products=products.filter(p=>p.id!==id);delete links[id];store.set("xv_links",links);cart=cart.filter(i=>i.id!==id);saveP();saveC();route(true);toast("E-book removido.")}break;
+    case "rmcover":adm.cover="";{const p=adm.edit==="new"?{title:$("#a-title").value||"Título",cat:$("#a-cat").value}:{...byId(adm.edit),title:$("#a-title").value||"Título",cat:$("#a-cat").value};$("#cvprev").innerHTML=cover({...p,cover:""})}break;
+    case "ord-del":if(twice("od"+t.dataset.ref)){orders=orders.filter(o=>o.ref!==t.dataset.ref);saveO();route(true)}break;
+    case "bk-copy":copy($("#bk").value,"Cópia de segurança copiada.");break;
+    case "bk-import":{
+      if(!twice("bki"))break;
+      try{const d=JSON.parse($("#bki").value);if(!Array.isArray(d.products))throw 0;products=d.products;settings=merge(DEFAULT_SETTINGS,d.settings||{});orders=Array.isArray(d.orders)?d.orders:[];saveP();saveS();saveO();route(true);toast("Cópia reposta.")}catch(x){toast("A cópia de segurança não é válida.")}
+      break}
+  }
+});
+function copy(text,msg){
+  const fb=()=>{const ta=document.createElement("textarea");ta.value=text;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy");toast(msg)}catch(e){toast("Não foi possível copiar.")}ta.remove()};
+  if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(text).then(()=>toast(msg),fb);else fb();
+}
+document.addEventListener("input",e=>{
+  if(e.target.id==="cq")setQuery({q:e.target.value});
+  if(e.target.id==="a-title"||e.target.id==="a-cat"){const pv=$("#cvprev");if(pv&&!pv.querySelector("img")){const p=adm.edit==="new"?{}:byId(adm.edit)||{};pv.innerHTML=cover({...p,title:$("#a-title").value||"Título",cat:$("#a-cat").value,cover:""})}}
+});
+document.addEventListener("change",e=>{
+  if(e.target.id==="csort")setQuery({sort:e.target.value==="rel"?"":e.target.value});
+  if(e.target.id==="a-cat")e.target.dispatchEvent(new Event("input",{bubbles:true}));
+  if(e.target.dataset&&e.target.dataset.status){const o=orders.find(x=>x.ref===e.target.dataset.status);if(o){o.status=e.target.value;saveO();route(true);toast("Estado actualizado.")}}
+  if(e.target.id==="a-cover"&&e.target.files[0]){
+    const f=e.target.files[0],rd=new FileReader();
+    rd.onload=()=>{const im=new Image();im.onload=()=>{const W=480,H=720,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");const s=Math.max(W/im.width,H/im.height),w=im.width*s,h=im.height*s;x.drawImage(im,(W-w)/2,(H-h)/2,w,h);adm.cover=c.toDataURL("image/jpeg",.82);$("#cvprev").innerHTML=cover({title:"Capa",cover:adm.cover})};im.onerror=()=>toast("Imagem inválida.");im.src=rd.result};
+    rd.readAsDataURL(f);
+  }
+});
+document.addEventListener("submit",async e=>{
+  const f=e.target.closest("form[data-form]");if(!f)return;e.preventDefault();
+  switch(f.dataset.form){
+    case "hsearch":{const v=$("#hq").value.trim();location.hash="#/catalogo"+(v?"?q="+encodeURIComponent(v):"");break}
+    case "checkout":{const d=validate(f);if(d){draft=d;route()}else{const x=f.querySelector(".err:not(:empty)");if(x)x.closest(".fld").querySelector("input").focus()}break}
+    case "adm-setup":{const p=f.pin.value,p2=f.pin2.value,er=$("#pin-err");if(p.length<6){er.textContent="O PIN precisa de pelo menos 6 caracteres.";break}if(p!==p2){er.textContent="Os PIN não coincidem.";break}store.set("xv_adm_hash",await sha(p));adm.authed=true;try{sessionStorage.setItem("xv_adm","1")}catch(x){}route();break}
+    case "adm-login":{const ok=(await sha(f.pin.value))===store.get("xv_adm_hash",null);if(ok){adm.authed=true;try{sessionStorage.setItem("xv_adm","1")}catch(x){}route()}else $("#pin-err").textContent="PIN incorrecto.";break}
+    case "adm-send":{
+      const via=(e.submitter&&e.submitter.dataset.via)||"wa",fd=new FormData(f),ids=fd.getAll("sp"),name=(fd.get("sname")||"").trim(),ph=phoneAO(fd.get("sphone")),em=(fd.get("semail")||"").trim();
+      if(!ids.length){toast("Escolha pelo menos um e-book.");break}
+      if(via==="wa"&&ph.length<11){toast("Indique o WhatsApp do cliente.");break}
+      if(via==="mail"&&!em){toast("Indique o e-mail do cliente.");break}
+      const o={customer:{name:name},items:ids.map(id=>({id,title:byId(id).title,qty:1}))},txt=deliveryText(o);
+      const url=via==="wa"?`https://wa.me/${ph}?text=${encodeURIComponent(txt)}`:`mailto:${em}?subject=${encodeURIComponent("Os seus e-books — "+settings.brand)}&body=${encodeURIComponent(txt)}`;
+      const a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";document.body.appendChild(a);a.click();a.remove();break}
+    case "adm-pin":{if(f.pin.value.length<6){toast("O PIN precisa de pelo menos 6 caracteres.");break}store.set("xv_adm_hash",await sha(f.pin.value));f.reset();toast("PIN alterado.");break}
+    case "adm-settings":{for(const [k,v] of new FormData(f).entries())setPath(settings,k,v.trim?v.trim():v);saveS();route(true);toast("Definições guardadas.");break}
+    case "adm-product":{
+      const fd=Object.fromEntries(new FormData(f).entries());
+      const price=Math.round(Number(fd.price));if(!(price>=0)||isNaN(price)){toast("Indique um preço válido.");break}
+      const base={title:fd.title.trim(),author:fd.author.trim()||"XAVIER'S",cat:fd.cat,price,pages:fd.pages?Number(fd.pages):"",short:fd.short.trim(),long:fd.long.trim(),toc:(fd.toc||"").split("\n").map(x=>x.trim()).filter(Boolean),sample:(fd.sample||"").trim(),featured:!!fd.featured,demo:false};
+      let pid=adm.edit;
+      if(adm.edit==="new"){let id=slug(base.title),n=2;while(byId(id))id=slug(base.title)+"-"+n++;pid=id;products.push({id,...base,cover:adm.cover||""})}
+      else{const p=byId(adm.edit);Object.assign(p,base);if(adm.cover!==undefined)p.cover=adm.cover}
+      const u=(fd.url||"").trim();if(u)links[pid]=u;else delete links[pid];store.set("xv_links",links);
+      saveP();adm.edit=null;adm.cover=undefined;route(true);toast("E-book guardado.");break}
+  }
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"){openCart(false);openModal(false)}});
+window.addEventListener("hashchange",()=>route());
+route();
+</script>
+</body>
+</html>
